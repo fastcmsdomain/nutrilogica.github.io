@@ -1,0 +1,387 @@
+/* ─── Config ─────────────────────────────────────────────────────────────── */
+:root {
+  --color-bg:        #F6F7F6;
+  --color-text:      #5A5A58;
+  --color-text-muted:#8A8A88;
+  --color-border:    #D8D9D7;
+  --color-accent:    #5A5A58;
+
+  --font-base:       'Inter', system-ui, sans-serif;
+
+  /* Spacing scale – mobile base values */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2.5rem;
+  --space-xl:  4rem;
+
+  --max-width: 680px;
+  --radius:    4px;
+}
+
+/* Scale spacing up from tablet onwards */
+@media (min-width: 640px) {
+  :root {
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+  }
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+a:hover { opacity: 0.65; }
+
+/* ─── Layout helpers ─────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  /* Tighter on mobile, comfortable on wider screens */
+  padding-inline: var(--space-sm);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline: var(--space-md);
+  }
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+.site-header {
+  background: white;
+  padding-block: var(--space-sm);
+}
+
+.site-header .container {
+  text-align: left;
+}
+
+.site-header .logo {
+  /* Mobile: readable at 140px tall (≈ 380px wide on the 1151:423 ratio) */
+  height: 140px;
+  width: auto;
+}
+
+@media (min-width: 480px) {
+  .site-header .logo {
+    height: 70px;
+  }
+}
+
+@media (min-width: 640px) {
+  .site-header .logo {
+    height: 100px;
+  }
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  padding-block: var(--space-xl) var(--space-lg);
+}
+
+.hero__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.hero__headline {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+.hero__subline {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  max-width: 520px;
+  margin-bottom: var(--space-lg);
+}
+
+/* ─── Lead Capture Form ──────────────────────────────────────────────────── */
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 420px;
+}
+
+/* Mobile: stack input and button vertically */
+.lead-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Tablet+: place them side-by-side */
+@media (min-width: 480px) {
+  .lead-form__row {
+    flex-direction: row;
+  }
+}
+
+.lead-form__input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.lead-form__input::placeholder { color: var(--color-text-muted); }
+
+.lead-form__input:focus {
+  border-color: var(--color-accent);
+}
+
+.lead-form__btn {
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-base);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  /* Full width on mobile, auto on wider screens */
+  width: 100%;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+@media (min-width: 480px) {
+  .lead-form__btn {
+    width: auto;
+  }
+}
+
+.lead-form__btn:hover { opacity: 0.8; }
+
+/* GDPR consent */
+.lead-form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.lead-form__consent input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: 3px;
+  accent-color: var(--color-accent);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.lead-form__consent-label {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.lead-form__consent-label a {
+  color: var(--color-text-muted);
+}
+
+/* Success state */
+.lead-form__success {
+  display: none;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  padding-block: var(--space-xs);
+}
+
+.lead-form.is-submitted .lead-form__row,
+.lead-form.is-submitted .lead-form__consent { display: none; }
+
+.lead-form.is-submitted .lead-form__success { display: block; }
+
+/* ─── Divider ────────────────────────────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-lg);
+}
+
+/* ─── Pillars Section ────────────────────────────────────────────────────── */
+.pillars {
+  padding-bottom: var(--space-xl);
+}
+
+.pillars__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.pillars__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pillars__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  font-size: 1.0625rem;
+  font-weight: 300;
+  color: var(--color-text);
+}
+
+.pillars__item::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 18px;
+  height: 1px;
+  background: var(--color-border);
+  position: relative;
+  top: -4px;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+.site-footer {
+  background: white;
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-md);
+}
+
+/* Mobile: stack company name and nav links vertically */
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+/* Tablet+: place them on one row */
+@media (min-width: 640px) {
+  .site-footer__inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.site-footer__company {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.site-footer__nav {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.site-footer__nav a {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.site-footer__nav a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── Inner pages (Impressum / Datenschutz) ──────────────────────────────── */
+.page-content {
+  padding-block: var(--space-lg) var(--space-xl);
+  flex: 1;
+}
+
+.page-content h1 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-lg);
+}
+
+.page-content h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
+.page-content p,
+.page-content address {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  font-style: normal;
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+}
+
+.page-content a { color: var(--color-text-muted); }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-lg);
+}
+
+.back-link:hover { opacity: 0.65; }
+
+/* ─── Accessibility ──────────────────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*
+ * Responsive behaviour is co-located with each component above
+ * using mobile-first min-width breakpoints:
+ *   480px – form row switches to inline, button width becomes auto
+ *   640px – spacing scale increases, container padding widens,
+ *            footer switches to horizontal layout
+ */
