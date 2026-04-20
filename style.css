@@ -78,13 +78,13 @@ a:hover { opacity: 0.65; }
 
 .site-header .logo {
   /* Mobile: readable at 140px tall (≈ 380px wide on the 1151:423 ratio) */
-  height: 140px;
-  width: auto;
+  height: auto;
 }
 
 @media (min-width: 480px) {
   .site-header .logo {
     height: 70px;
+    width: auto;
   }
 }
 
@@ -96,7 +96,7 @@ a:hover { opacity: 0.65; }
 
 /* ─── Hero ───────────────────────────────────────────────────────────────── */
 .hero {
-  padding-block: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-md) 0 var(--space-md);
 }
 
 .hero__eyebrow {
@@ -127,7 +127,6 @@ a:hover { opacity: 0.65; }
   font-weight: 400;
   color: var(--color-text-muted);
   max-width: 520px;
-  margin-bottom: var(--space-lg);
 }
 
 /* ─── Lead Capture Form ──────────────────────────────────────────────────── */
