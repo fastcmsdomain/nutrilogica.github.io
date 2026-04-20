@@ -107,6 +107,12 @@ a:hover { opacity: 0.65; }
   margin-bottom: var(--space-md);
 }
 
+@media (min-width: 640px) {
+  .hero__eyebrow {
+    font-size: 1.2rem;
+  }
+}
+
 .hero__headline {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
@@ -247,6 +253,12 @@ a:hover { opacity: 0.65; }
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .pillars__label {
+    font-size: 1.2rem;
+  }
 }
 
 .pillars__list {
